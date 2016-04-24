@@ -4,7 +4,7 @@ Arquitecturas de Software
 Stomp y Websockets
 ------------------
 
-Clone el proyecto que [stomp-websockets](https://github.com/ARSW/stomp-websockets)
+Clone el proyecto que [stomp-websockets](https://github.com/ARSW2016-1/stomp-websockets)
 
 
 
