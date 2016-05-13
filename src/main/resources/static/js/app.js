@@ -1,9 +1,9 @@
 (function () {
-    var laboratorio ="ARSW-Lab";
+    var laboratorio = "ARSW-Lab";
     var app = angular.module("estudiante", []);
 
-    app.controller("LabController", function(){
-        this.setLab= function (lab) {
+    app.controller("LabController", function () {
+        this.setLab = function (lab) {
             laboratorio = lab;
         };
         this.getLaboratorio = function () {
@@ -11,25 +11,30 @@
         };
 
     });
-	
-	app.controller("TabController", ['$http', function($http) {
-		this.tab=1;
 
-		this.setTab = function(tab) {
-			this.tab=tab;
-		}
+    app.controller("TabController", ['$http', function ($http) {
+            this.tab = 1;
 
-		this.isSet = function(tab){
-			return this.tab === tab;
-		};
-        var enunciado = this;
+            this.setTab = function (tab) {
+                this.tab = tab;
+            };
 
-        enunciado.puntos=[];
-        $http.get('http://localhost:8084/labncode/rest/servicios/laboratorio/'+laboratorio+'/enunciado').success(function(data){
-            console.log(data);
-            //enunciado.puntos=;
-        })
+            this.isSet = function (tab) {
+                return this.tab === tab;
+            };
+            var enunciado = this;
+            enunciado.grupos = [];
+            enunciado.puntos = [];
+            $http.get('http://localhost:8084/labncode/rest/servicios/laboratorio/' + laboratorio + '/enunciado').success(function (data) {
+                console.log(data);
+                //enunciado.puntos=;
+            });
+            $http.get('http://localhost:8084/labncode/rest/servicios/laboratorio/grupos/' + laboratorio).success(function (data) {
+                console.log(data);
+                enunciado.grupos = data;
+                console.log(enunciado.grupos)
+            })
 
-	}]);
+        }]);
 
 })();
