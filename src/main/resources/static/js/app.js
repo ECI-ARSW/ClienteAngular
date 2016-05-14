@@ -29,7 +29,7 @@
                 console.log(data);
                 //enunciado.puntos=;
             });
-            $http.get('http://localhost:8084/labncode/rest/servicios/laboratorio/grupos/' + laboratorio).success(function (data) {
+            $http.get('http://localhost:8084/labncode/rest/servicios/laboratorio/' + laboratorio+'/grupos').success(function (data) {
                 console.log(data);
                 enunciado.grupos = data;
                 console.log(enunciado.grupos)
