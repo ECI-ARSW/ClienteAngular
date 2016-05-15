@@ -58,12 +58,12 @@
                             </ul>
                             <div ng-show="tab.isSet(2)">
                                 <h4>Agregar punto</h4>
-                                <form>
+                                <form name="form2" ng-controller="submit as sub" ng-submit="sub.addPunto(tab.puntos)" >
                                     <label>Nombre</label><br>
-                                    <input  class="form-control"><br>
-                                    <textarea class="form-control" placeholder="Descripción 200 caracteres máximo"></textarea><br>
-                                    <input  class="form-control" type="number" placeholder="Peso 0 - 100"><br>
-                                    <button  class="btn btn-primary">Agregar</button>
+                                    <input  class="form-control" required  ng-model="sub.punto.nombre"><br>
+                                    <textarea class="form-control" placeholder="Descripción 200 caracteres máximo" ng-model="sub.punto.descripcion" required></textarea><br>
+                                    <input  class="form-control" type="number" placeholder="Peso 0 - 100" ng-model="sub.punto.peso" required><br>
+                                    <button  class="btn btn-primary" type="submit">Agregar</button>
                                 </form>
                                 <h4>Puntos</h4>
                                 <table class="table">
