@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+        <p:panel id="panel" header="Acceso no Autorizado" style="margin-top:20px" >
+         
+        <h:panelGrid columns="1"  >
+            
+            <p:graphicImage value="./imagenes/imagen.jpg" />
+            <p><h:outputLabel for="panel" value="Escuela Colombiana De Ingenieria Julio Garavito"   /></p>
+            <p><h:outputLabel for="panel" value="Acceso no Autorizado"/></p>
+            <p><h:outputLink value="../login.xhtml">Sign out</h:outputLink></p>
+        </h:panelGrid>
+        </p:panel>
+</h:body>
+</html>

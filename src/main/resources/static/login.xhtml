@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+    <h:form prependId="false">
+        
+            <p:panel id="panel" header="Bienvenido" style="margin-top:20px" >
+     
+        
+        <h:panelGrid columns="1"  >
+            <p:graphicImage value="./imagenes/imagen.jpg" />
+            <p><h:outputLabel for="name" value="Escuela Colombiana De Ingenieria Julio Garavito"   /></p>
+            <p><h:outputLabel for="name" value="Pagina Principal Login"/></p>
+        </h:panelGrid>
+                
+        <h:panelGrid columns="2">
+                  
+        
+            <h:outputText value="Login:"/>
+            <p:inputText id="username" required="true" value="#{shiroLoginBean.username}"/>
+
+            <h:outputText value="Password:"/>
+            <p:password id="password" required="true" value="#{shiroLoginBean.password}"/>
+
+            <h:outputText value="Remember me:"/>
+            <p:selectBooleanCheckbox id="rememberMe" value="#{shiroLoginBean.rememberMe}"/>
+
+            <h:outputText/>
+            <p:commandButton value="Login" action="#{shiroLoginBean.doLogin}" />
+        </h:panelGrid>
+
+        <p:messages id="messages" autoUpdate="true" closable="true" />
+        </p:panel>
+    </h:form>
+</h:body>
+</html>
