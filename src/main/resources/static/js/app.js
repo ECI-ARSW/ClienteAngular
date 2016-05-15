@@ -26,8 +26,7 @@
             enunciado.grupos = [];
             enunciado.puntos = [];
             $http.get('http://localhost:8084/labncode/rest/servicios/laboratorio/' + laboratorio + '/enunciado').success(function (data) {
-                console.log(data);
-                //enunciado.puntos=;
+                enunciado.puntos=data.puntos;
             });
             $http.get('http://localhost:8084/labncode/rest/servicios/laboratorio/' + laboratorio+'/grupos').success(function (data) {
                 console.log(data);
