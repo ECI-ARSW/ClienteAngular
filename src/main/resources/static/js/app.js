@@ -2,6 +2,7 @@
     var laboratorio = "ARSW-Lab";
     var app = angular.module("estudiante", []);
 
+
     app.controller("LabController", function () {
         this.setLab = function (lab) {
             laboratorio = lab;
@@ -42,8 +43,8 @@
             console.log(this.punto);
             console.log(puntos);
             puntos.push(this.punto);
-            $http.post('http://localhost:8084/labncode/rest/servicios/laboratorio/' + laboratorio + '/enunciado/'+this.punto).success(function(){
-                alert("Enviado");
+            $http.post('http://localhost:8084/labncode/rest/servicios/laboratorio/' + laboratorio+'/enunciado/puntos',this.punto).success(function (data) {
+                console.log(data);
             });
             this.punto={};
         };
