@@ -31,7 +31,7 @@ public class MyRestController {
 
     @RequestMapping(value = "/msg",method = RequestMethod.POST)        
     public ResponseEntity<?> addMessage(@RequestBody ClientMessage p) {       
-        template.convertAndSend("/topic/messages",new ServerMessage(p.getMessage()));
+        template.convertAndSend("/topic/code",new ServerMessage(p.getMessage()));
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 

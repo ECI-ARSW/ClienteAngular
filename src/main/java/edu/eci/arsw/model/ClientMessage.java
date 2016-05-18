@@ -9,17 +9,26 @@ package edu.eci.arsw.model;
  *
  * @author 2101359
  */
-
 public class ClientMessage {
 
-        private String message;
+    private String name;
+    private int id;
 
-        public String getMessage() {
-                return message;
-        }
+    public String getMessage() {
+        return name;
+    }
 
-        public void setMessage(String message) {
-                this.message = message;
-        }
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
 
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 }
