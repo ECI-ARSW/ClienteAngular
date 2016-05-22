@@ -8,21 +8,6 @@
     var interval;
     var socket;
 
-    app.config(function($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/home');
-        $stateProvider
-            .state('home', {
-                url: '/home',
-                templateUrl: 'templates/login.html'
-            })
-            .state('about', {
-                // we'll get to this in a bit
-            })
-            .state('laboratorios', {
-                // we'll get to this in a bit
-            })
-        });
-
     app.controller("LabController", ['$scope', function ($scope){
         this.setLab = function (lab) {
             laboratorio = lab;
@@ -127,6 +112,22 @@
                 });
             }
         };
+    });
+
+
+    app.config(function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/home');
+        $stateProvider
+            .state('home', {
+                url: '/home',
+                templateUrl: 'templates/login.html'
+            })
+            .state('about', {
+                // we'll get to this in a bit
+            })
+            .state('laboratorios', {
+                // we'll get to this in a bit
+            })
     });
 
 })();
