@@ -18,6 +18,9 @@
             .state('about', {
                 // we'll get to this in a bit
             })
+            .state('laboratorios', {
+                // we'll get to this in a bit
+            })
         });
 
     app.controller("LabController", ['$scope', function ($scope){
