@@ -1,12 +1,24 @@
 (function () {
     var laboratorio = "ARSW-Lab";
-    var app = angular.module("aplicacion", []);
+    var app = angular.module("aplicacion",['ui.router']);
     var editor;
     var id = Math.floor((Math.random() * 1000) + Math.random() * 2);
     var stompClient = null;
     var dmp = new diff_match_patch();
     var interval;
     var socket;
+
+    app.config(function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/home');
+        $stateProvider
+            .state('home', {
+                url: '/home',
+                templateUrl: 'templates/login.html'
+            })
+            .state('about', {
+                // we'll get to this in a bit
+            })
+        });
 
     app.controller("LabController", ['$scope', function ($scope){
         this.setLab = function (lab) {
