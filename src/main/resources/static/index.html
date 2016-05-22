@@ -1,24 +1,48 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="aplicacion" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Hello WebSocket</title>
-    <script src="sockjs-0.3.4.js"></script>
-    <script src="stomp.js"></script>
-    <script src="stomp-ws.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>LabNCode</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link href="css/style.css">
+    <!--scripts-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <!--script type="text/javascript" src="js/script.js"></script-->
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/diff_match_patch.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/angular-ui-router.min.js"></script>
 </head>
-<body>
-  <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable
-                Javascript and reload this page!</h2></noscript>
-  <div>
-    <div>
-      <button id="connect">Connect</button>
-      <button id="disconnect" disabled="disabled">Disconnect</button>
-    </div>
-    <div id="conversationDiv">
-      <label>Message to send?</label><input type="text" id="message" />
-      <button id="send">Send</button>
-      <p id="response"></p>
-    </div>
-  </div>
+<body style=" background-color: #556676;">
+<!-- Navigation -->
+<div ng-include="'page-header.html'"></div>
+        <div class="panel panel-primary" style="width:50%; max-height: 70%; position: absolute;top:0;bottom: 0;left: 0;right: 0;margin: auto;text-align: center;">
+            <div class="panel-heading">
+                <h2>Ingresar</h2>
+            </div>
+            <div class="form-group">
+                <div class="panel-body">
+                    <p>Bienvenido a LabNCode</p>
+                    <p>Ingrese su usuario y contraseña</p>
+                    <input class="form-control" placeholder="Usuario"><br>
+                    <input class="form-control" placeholder="Contraseña" type="password"><br>
+                    <button class="btn btn-primary" style="width: 100%">Enviar</button>
+                </div>
+
+            </div>
+        </div>
+    <!--div ng-include="'page-footer.html'"></div-->
 </body>
 </html>
+
