@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="157cbbf9-4faf-4b9a-8b4f-5830919c2e46" name="Default" comment="Agregado el index y comienzo de uso de ui-router">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/login.html" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../java/edu/eci/arsw/controller/MessageController.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../java/edu/eci/arsw/controller/MyRestController.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../../java/edu/eci/arsw/controller/WebSocketConfig.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/estudiante/escritorioEstudiante.html" afterPath="$PROJECT_DIR$/templates/estudiante/escritorioEstudiante.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/page-footer.html" afterPath="$PROJECT_DIR$/templates/page-footer.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/page-header.html" afterPath="$PROJECT_DIR$/templates/page-header.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/profesor/escritorioProfesor.html" afterPath="$PROJECT_DIR$/templates/profesor/escritorioProfesor.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
     </list>
     <ignored path="static.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -364,7 +357,7 @@
       <workItem from="1463544707116" duration="5373000" />
       <workItem from="1463571647050" duration="333000" />
       <workItem from="1463581033834" duration="3050000" />
-      <workItem from="1463929650850" duration="12218000" />
+      <workItem from="1463929650850" duration="12745000" />
     </task>
     <task id="LOCAL-00001" summary="Modificación de url de grupos">
       <created>1463256393622</created>
@@ -380,11 +373,18 @@
       <option name="project" value="LOCAL" />
       <updated>1463943743245</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Ui-Router agregado, voy a hacer la estructura de la navegación">
+      <created>1463947566617</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1463947566617</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40817000" />
+    <option name="totallyTimeSpent" value="41344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
@@ -423,7 +423,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Modificación de url de grupos" />
     <MESSAGE value="Agregado el index y comienzo de uso de ui-router" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregado el index y comienzo de uso de ui-router" />
+    <MESSAGE value="Ui-Router agregado, voy a hacer la estructura de la navegación" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ui-Router agregado, voy a hacer la estructura de la navegación" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -24,14 +24,12 @@ import edu.eci.arsw.model.ServerMessage;
 @RestController
 @RequestMapping("/rest")
 public class MyRestController {
-
-
     @Autowired 
     public SimpMessagingTemplate template;  
-
+    
     @RequestMapping(value = "/msg",method = RequestMethod.POST)        
     public ResponseEntity<?> addMessage(@RequestBody ClientMessage p) {       
-        template.convertAndSend("/topic/code",new ServerMessage(p.getMessage()));
+        template.convertAndSend("/topic/messages",new ServerMessage(p.getMessage()));
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
