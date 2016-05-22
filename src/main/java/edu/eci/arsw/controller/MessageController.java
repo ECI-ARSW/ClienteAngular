@@ -19,5 +19,10 @@ public class MessageController {
     public ServerMessage serverMessage(ClientMessage message) throws Exception {
             return s.getText(message.getMessage(), message.getId());
     }
-
+    
+    @MessageMapping("/code")
+    @SendTo("/topicide/messages")
+    public ServerMessage serverCode(CodeMessage codeMessage) throws Exception {
+         return s.getText(codeMessage.getCode(), codeMessage.getId());
+    }
 }

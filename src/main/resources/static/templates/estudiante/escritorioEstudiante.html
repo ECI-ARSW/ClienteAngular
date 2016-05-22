@@ -54,17 +54,7 @@
                         </div>
                         <div class="panel-body">
                             <textarea id="code" style="width: 100%; min-height: 400px;" ></textarea>
-                            <script>
-                                editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-                                    mode: {name: "python",
-                                        version: 3,
-                                        singleLineStringErrors: false},
-                                    lineNumbers: true,
-                                    indentUnit: 4,
-                                    matchBrackets: true
-                                });
-                            </script>
-                            <!--ide></ide-->
+                            <editor></editor>
                         </div>
                     </div>
                 </div>
