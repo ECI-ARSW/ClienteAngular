@@ -3,16 +3,28 @@
         <div class="panel-heading">
             <h2>Ingresar</h2>
         </div>
-        <form ng-controller="LoginController as login" ng-submit="login.login(login.person)">
+        <form ng-controller="LoginController" ng-submit="iniciar()">
             <div class="form-group">
                 <div class="panel-body">
                     <p>Bienvenido a LabNCode</p>
                     <p>Ingrese su usuario y contraseña</p>
-                    <input class="form-control" placeholder="Usuario" ng-model="login.person.id" required><br>
-                    <input class="form-control" placeholder="Contraseña" type="password" ng-model="login.person.nombre" required><br>
-                    <button class="btn btn-primary" style="width: 100%" type="submit" ui-sref="laboratorios">Enviar</button>
+                    <input class="form-control" placeholder="Usuario" ng-model="person.id" required><br>
+                    <input class="form-control" placeholder="Contraseña" type="password" ng-model="person.nombre" required><br>
+                    <button class="btn btn-primary" style="width: 100%" type="submit">Enviar</button>
                 </div>
             </div>
         </form>
+
+        <!--form ng-submit="iniciar()" ng-controller="ExampleController">
+            <div class="form-group">
+                <div class="panel-body">
+                    Enter text and hit enter:
+                    <input type="text" ng-model="text" name="text" />
+                    <input type="submit" id="submit" value="Submit" />
+                    <pre>list={{list}}</pre>
+                </div>
+            </div>
+        </form-->
+
     </div>
 </div>
