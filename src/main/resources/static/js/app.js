@@ -104,7 +104,7 @@
         $http.get('http://localhost:8084/labncode/rest/servicios/laboratorio/' + laboratorio + '/grupos').success(function (data) {
             console.log(data);
             enunciado.grupos = data;
-            console.log(enunciado.grupos)
+            console.log(enunciado.grupos);
         });
 
     }]);
