@@ -130,14 +130,23 @@
     app.controller("submit", ['$http', function ($http) {
         this.punto = {};
         this.addPunto = function (puntos) {
-            console.log(this.punto);
-            console.log(puntos);
             puntos.push(this.punto);
             $http.post('http://localhost:8084/labncode/rest/servicios/laboratorio/' + laboratorio + '/enunciado/puntos', this.punto).success(function (data) {
-                console.log(data);
+                
             });
             this.punto = {};
         };
+        this.removePunto = function (puntos,punto) {
+            $http.post('http://localhost:8084/labncode/rest/servicios/laboratorio/' + laboratorio + '/enunciado/remove/puntos', punto).success(function (data) {
+                
+            });
+        };
+        this.updatePunto = function (puntos,punto) {
+            $http.post('http://localhost:8084/labncode/rest/servicios/laboratorio/' + laboratorio + '/enunciado/update/puntos', punto).success(function (data) {
+                
+            });
+        };
+
     }]);
 
     app.directive('editor', function () {

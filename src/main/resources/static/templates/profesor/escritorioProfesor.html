@@ -85,12 +85,16 @@
                                             <td>{{punto.peso}}%</td>
                                             <td>
                                                 <div>
-                                                    <button class="btn-danger btn-sm">
+                                                    <form name="form2" ng-controller="submit as sub" ng-submit="sub.removePunto(tab.puntos,punto)" >
+                                                        <button class="btn-danger btn-sm" >
                                                         <span class="glyphicon glyphicon-remove"></span>
-                                                    </button>
+                                                        </button>
+                                                    </form>
+                                                    <form name="form2" ng-controller="submit as sub" ng-submit="sub.removePunto(tab.puntos,punto)" >
                                                     <button class="btn-warning btn-sm">
                                                         <span class="glyphicon glyphicon-pencil"></span>
                                                     </button>
+                                                    </form>
                                                 </div>
 
                                             </td>
