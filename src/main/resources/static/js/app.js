@@ -1,8 +1,7 @@
 (function () {
     var laboratorio = "ARSW-Lab";
-    var session_id = "";
+    var personaG={};
     //Si es verdadero es profesor, si no, es estudiante.
-    var session_kind=false;
     var app = angular.module("aplicacion",['ui.router']);
     var editor;
     var connected = false;
@@ -12,15 +11,26 @@
     var interval;
     var socket;
 
+    app.controller("NavController", function () {
+       this.isConnected = function () {
+          return connected;
+       };
+
+       this.getUser = function () {
+           return personaG.nombre;
+       }
+    });
+
     app.controller("LoginController", ['$scope', '$http', function ($scope, $http){
         var session=this;
-        session.persona={};
-        this.login = function(user, password) {
-            $http.get('http://localhost:8084/labncode/rest/servicios/persona' + user).success(function (data) {
+        session.person={};
+        this.login = function(user) {
+            console.log(user);
+            $http.get('http://localhost:8084/labncode/rest/servicios/persona' + user.id).success(function (data) {
                 console.log(data);
-                session.persona = data;
-                session_id = persona.nombre;
-                session_kind = persona.profesor;
+                session.person = data;
+                personaG.nombre=person.nombre;
+                personaG.session_kind=person.profesor;
                 connected = true;
             });
         }
@@ -30,6 +40,14 @@
 
     app.controller("LabController", ['$scope', '$http', function ($scope, $http){
 
+        this.isConnected = function(){
+            console.log("Llamando")
+            return connected;
+        }
+
+        this.getUser = function () {
+            return personaG.nombre;
+        }
 
         this.setLab = function (lab) {
             laboratorio = lab;
@@ -180,7 +198,8 @@
                 // we'll get to this in a bit
             })
             .state('laboratorios', {
-                // we'll get to this in a bit
+                url: '/laboratorios',
+                templateUrl: 'templates/laboratorios.html'
             })
     });
 
