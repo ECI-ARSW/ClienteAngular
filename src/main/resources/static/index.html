@@ -22,11 +22,13 @@
     <script type="text/javascript" src="js/app.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
 </head>
-<body style=" background-color: #556676;">
+<body >
 <!-- Navigation -->
-    <div ng-include="'templates/page-header.html'"></div>
-    <div class="container">
-        <div ui-view></div>
+    <div class="login" >
+        <div ng-include="'templates/page-header.html'"></div>
+        <div class="container">
+            <div ui-view></div>
+        </div>
     </div>
     <!--div ng-include="'page-footer.html'"></div-->
 </body>
