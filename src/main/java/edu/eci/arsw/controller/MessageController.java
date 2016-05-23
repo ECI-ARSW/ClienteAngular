@@ -14,10 +14,11 @@ import edu.eci.arsw.model.*;
 @Controller
 public class MessageController {
     Servidor s = new Servidor();
-    @MessageMapping("/message")
-    @SendTo("/topic/messages")
+    @MessageMapping("/mensaje")
+    @SendTo("/topicide/chat")
     public ServerMessage serverMessage(ClientMessage message) throws Exception {
-            return s.getText(message.getMessage(), message.getId());
+            System.out.println("llego un mensaje");
+            return new ServerMessage(message.getName(), message.getMessage());
     }
     
     @MessageMapping("/code")

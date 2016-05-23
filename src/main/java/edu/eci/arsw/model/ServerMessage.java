@@ -15,6 +15,10 @@ public class ServerMessage {
     private String server;
     private int id;
 
+    public ServerMessage(String content, String server){
+        this.content = content;
+        this.server = server;
+    }
     public ServerMessage(String content) {
         this.content = content;
     }

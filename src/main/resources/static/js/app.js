@@ -6,10 +6,10 @@
     var editor;
     var connected = false;
     var id = Math.floor((Math.random() * 1000) + Math.random() * 2);
-    var stompClient = null;
+
     var dmp = new diff_match_patch();
     var interval;
-    var socket;
+
 
     app.controller("NavController", function () {
        this.isConnected = function () {
@@ -37,6 +37,56 @@
         }
 
     }]);
+    
+    app.controller("ChatController", [ '$scope', function ($scope) {
+
+        $scope.mensaje = "";
+        $scope.respuesta ="";
+
+        var socket = null;
+        var stompClient = null;
+        $scope.connectChat=function () {
+            socket = new SockJS('/wbs');
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function (frame) {
+                console.log('Connected: ' + frame);
+                stompClient.subscribe('/topicide/chat', function (data) {
+                    var j = JSON.parse(data.body);
+                    $scope.actualizarChat(j.content, j.server);
+                });
+            });
+
+        }
+
+        $scope.disconnectChat = function () {
+            if (stompClient != null) {
+                stompClient.disconnect();
+            }
+            setConnected(false);
+            console.log("Disconnected");
+            clearInterval(interval);
+        }
+
+        $scope.sendMessage = function () {
+
+            stompClient.send("/app/mensaje", {}, JSON.stringify({'name': 'mico', 'message': 'testmensaje','id': id}));
+        }
+
+        $scope.actualizarChat= function (content, server) {
+            var text = "[" + content  + "] : " +  server + "\n";
+
+            var response = document.getElementById('response');
+            var texto = document.createTextNode(text);
+            response.appendChild(texto);
+
+
+        }
+
+        $scope.init= function(){
+            console.log("Llamando")
+            $scope.connectChat();
+        }
+    }]);
 
 
     app.controller("LabController", ['$scope', '$http', function ($scope, $http){
@@ -57,6 +107,7 @@
             return laboratorio;
         };
 
+        /*
         this.connect=function () {
             socket = new SockJS('/ws');
             stompClient = Stomp.over(socket);
@@ -99,7 +150,7 @@
         $scope.init= function(){
             console.log("Llamando")
             $scope.connect();
-        }
+        }*/
     }]);
 
 
@@ -143,6 +194,8 @@
 
     app.directive('editor', function () {
         var controller = ['$scope', function ($scope) {
+            var stompclient = null;
+            var socket = null;
 
             function conectar() {
                 socket = new SockJS('/wbs');
