@@ -21,18 +21,19 @@
        }
     });
 
-    app.controller("LoginController", ['$scope', '$http', function ($scope, $http){
-        var session=this;
+    app.controller("LoginController", ['$scope', '$http' , '$location', function ($scope, $http, $location){
+        $scope.person={};
+        var session = this;
         session.person={};
-        this.login = function(user) {
-            console.log(user);
-            $http.get('http://localhost:8084/labncode/rest/servicios/persona' + user.id).success(function (data) {
+        $scope.iniciar = function() {
+            $http.get('http://localhost:8084/labncode/rest/servicios/persona/' + $scope.person.id).success(function (data) {
                 console.log(data);
                 session.person = data;
-                personaG.nombre=person.nombre;
-                personaG.session_kind=person.profesor;
+                personaG.nombre=session.person.nombre;
+                personaG.session_kind=session.person.profesor;
                 connected = true;
             });
+            $location.path("laboratorios");
         }
 
     }]);
@@ -41,7 +42,7 @@
     app.controller("LabController", ['$scope', '$http', function ($scope, $http){
 
         this.isConnected = function(){
-            console.log("Llamando")
+            console.log(connected)
             return connected;
         }
 
