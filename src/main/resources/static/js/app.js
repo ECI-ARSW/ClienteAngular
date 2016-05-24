@@ -287,7 +287,7 @@
                 console.log(f.profe);
             });
             f.l = [];
-            $http.post('http://localhost:8084/labncode/rest/servicios/laboratorio', this.profe).success(function (data) {
+            $http.post('http://localhost:8084/labncode/rest/servicios/laboratorios', this.profe).success(function (data) {
                 console.log(data);
                 f.l = data;
                 console.log(f.l);
