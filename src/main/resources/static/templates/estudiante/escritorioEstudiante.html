@@ -1,39 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="aplicacion">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>Estudiante</title>
-        <!-- Bootstrap Core CSS -->
-        <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <!--link rel="stylesheet" href="../css/footer-distributed-with-address-and-phones.css"-->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-        <!-- Custom CSS -->
-        <link href="../../css/heroic-features.css" rel="stylesheet">
-        <!--scripts-->
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <!--script type="text/javascript" src="js/script.js"></script-->
-        <script src="../../js/sockjs-0.3.4.js"></script>
-        <script src="../../js/stomp.js"></script>
-        <script type="text/javascript" src="../../js/diff_match_patch.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-        <script type="text/javascript" src="../../js/app.js"></script>
-        <link rel="stylesheet" href="../../css/codemirror.css">
-        <script src="../../js/codemirror.js"></script>
-        <script src="../../js/matchbrackets.js"></script>
-        <script src="../../js/python.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
-
-        <!--script src="../js/stomp-ws.js"></script-->
-        <style type="text/css">.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}</style>
-    </head>
-    <body>
-        <!-- Navigation -->
-        <div ng-include="'../page-header.html'"></div>
+ <!-- Navigation -->
+        <div ng-include="'templates/page-header.html'"></div>
         <!--ng-controller="LabController as lab" ng-init="init()"-->
         <div class="container" >
             <!-- Jumbotron Header -->
@@ -66,6 +32,11 @@
                                 <editor></editor>
                             </div>
                             <div ng-show="code.isSet(2)">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                        <span class="sr-only">90% Complete</span>
+                                    </div>
+                                </div>
                                 <table class="table">
                                     <thead>
                                     <tr>
@@ -76,7 +47,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <form>
+                                        <form class="form-group">
                                             <tr ng-repeat="punto in code.puntos">
                                                 <td>{{punto.nombre}}</td>
                                                 <td>{{punto.descripcion}}</td>
@@ -95,11 +66,4 @@
                 </div>
             </div>
             <hr>
-            <footer>
-                <center><p>Desarrollado por Maria Alejandra Blanco Uribe y Oscar Andres Caicedo Bedoya<br>
-                        2016</p></center>
-
-            </footer>
         </div>
-    </body>
-</html>
