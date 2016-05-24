@@ -11,10 +11,12 @@ package edu.eci.arsw.model;
  */
 public class ClientMessage {
 
-    private String name;
+    private String name, message;
     private int id;
+    
+    
 
-    public String getMessage() {
+    public String getName() {
         return name;
     }
 
@@ -30,5 +32,26 @@ public class ClientMessage {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

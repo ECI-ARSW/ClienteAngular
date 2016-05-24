@@ -1,0 +1,20 @@
+<div ng-controller="ChatController" ng-init="init()">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4>Chat</h4>
+        </div>
+        <div class="panel-body">
+            <div id="conversationDiv">
+                <div class="form-group">
+                    <label>Enviar a:</label><br>
+                    <input ng-model="idGrupo" type="text" placeholder="Grupo" style="width:100%;">
+                    <p></p>
+                    <textarea id="response" ng-model="respuesta" style="width:100%; min-height: 190px;" disabled></textarea>
+                    <p></p>
+                    <input id="message" ng-model="mensaje" type="text" placeholder="Escriba su mensaje aquí..." style="width:83%;">
+                    <button id="send" class="btn btn-primary btn-xs" ng-click="sendMessage()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
