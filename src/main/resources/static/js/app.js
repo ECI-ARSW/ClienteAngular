@@ -1,7 +1,7 @@
 (function () {
     var laboratorio = "ARSW-Lab";
     var user = "0";
-    var personaG = {};
+    var personaG = {'grupo' : "Grupo1"};
     //Si es verdadero es profesor, si no, es estudiante.
     var app = angular.module("aplicacion", ['ui.router']);
     var editor;
@@ -28,6 +28,12 @@
                     session.person = data;
                     personaG.nombre = session.person.nombre;
                     personaG.session_kind = session.person.profesor;
+                    if(personaG.session_kind){
+                        personaG.grupo=personaG.nombre;
+                    }else{
+                        personaG.grupo="Grupo1";
+                    }
+                    presonaG.grupo="Grupo1";
                     connected = true;
                 });
                 $location.path("laboratorios");
@@ -35,7 +41,6 @@
 
         }]);
     app.controller("ChatController", ['$scope', function ($scope) {
-
             $scope.mensaje = "";
             $scope.respuesta = "";
             var socket = null;
@@ -47,7 +52,8 @@
                     console.log('Connected: ' + frame);
                     stompClient.subscribe('/topicide/chat', function (data) {
                         var j = JSON.parse(data.body);
-                        $scope.actualizarChat(j.content, j.server);
+                        console.log(j);
+                        $scope.actualizarChat(j);
                     });
                 });
             }
@@ -61,16 +67,17 @@
                 clearInterval(interval);
             }
 
-            $scope.sendMessage = function () {
-
-                stompClient.send("/app/mensaje", {}, JSON.stringify({'name': 'mico', 'message': 'testmensaje', 'id': id}));
+            $scope.sendMessage = function(){
+                stompClient.send("/app/mensaje", {}, JSON.stringify({'id': personaG.grupo, 'name':$scope.idGrupo,'message': $scope.mensaje, 'broadcast': $scope.broadcast}));
             }
 
-            $scope.actualizarChat = function (content, server) {
-                var text = "[" + content + "] : " + server + "\n";
-                var response = document.getElementById('response');
-                var texto = document.createTextNode(text);
-                response.appendChild(texto);
+            $scope.actualizarChat = function (obj) {
+                if(personaG.grupo==obj.receptor || obj.broadcast){
+                    var text = "[" +obj.emisor+ "] : " + obj.mensaje+ "\n";
+                    var response = document.getElementById('response');
+                    var texto = document.createTextNode(text);
+                    response.appendChild(texto);
+                }
             }
 
             $scope.init = function () {
@@ -105,56 +112,29 @@
                     this.getLaboratorio = function () {
                         return laboratorio;
                     };
-                    /*
-                     this.connect=function () {
-                     socket = new SockJS('/ws');
-                     stompClient = Stomp.over(socket);
-                     stompClient.connect({}, function (frame) {
-                     console.log('Connected: ' + frame);
-                     stompClient.subscribe('/topic/code', function (greeting) {
-                     var j = JSON.parse(greeting.body);
-                     $scope.showCode(j.content, j.server, j.id);
-                     >>>>>>> 77894a4735cb545de224982d080179e36ef35e7c
-                     });
-                     $location.path("templates/laboratorios.html");
-                     }
-                     <<<<<<< HEAD
-                     
-                     }]);
-                     app.controller("LabController", ['$scope', '$http', function ($scope, $http) {
-                     
-                     this.isConnected = function () {
-                     console.log(connected)
-                     return connected;
-                     };
-                     
-                     this.getUse = function () {
-                     return user;
-                     };
-                     
-                     this.getUser = function () {
-                     return personaG.nombre;
-                     };
-                     
-                     this.setLab = function (lab) {
-                     laboratorio = lab;
-                     };
-                     this.getLaboratorio = function () {
-                     return laboratorio;
-                     };
-                     this.connect = function () {
-                     socket = new SockJS('/ws');
-                     =======
-                     }
-                     
-                     $scope.init= function(){
-                     console.log("Llamando")
-                     $scope.connect();
-                     }
-                     }]);*/
                 });
+                $location.path("laboratorios");
             };
         }]);
+
+    app.controller("CodigoController", ['$http', function ($http){
+        this.tab = 1;
+        this.setTab = function (tab) {
+            this.tab = tab;
+        };
+        this.isSet = function (tab) {
+            return this.tab === tab;
+        };
+        var enunciado = this;
+        enunciado.grupos = [];
+        enunciado.puntos = [];
+        $http.get('http://localhost:8084/labncode/rest/servicios/laboratorio/' + laboratorio + '/enunciado').success(function (data) {
+            console.log(data)
+            enunciado.puntos = data.puntos;
+        });
+
+    }]);
+
     app.controller("TabController", ['$http', function ($http) {
             this.tab = 1;
             this.setTab = function (tab) {
@@ -189,8 +169,9 @@
         }]);
     app.directive('editor', function () {
         var controller = ['$scope', function ($scope) {
-                var stompclient = null;
-                var socket = null;
+            var stompclient = null;
+            var socket = null;
+            var ready=false;
                 function conectar() {
                     socket = new SockJS('/wbs');
                     stompClient = Stomp.over(socket);
@@ -201,6 +182,7 @@
                             $scope.showCode(j.content, j.server, j.id);
                         });
                     });
+                    setTimeout(function (){ready=true; console.log("AQUI ESTA EL LISTO"+ready)}, 2000);
                     interval = setInterval($scope.sendCode, 500);
                 }
                 ;
@@ -214,8 +196,11 @@
                 }
 
                 $scope.sendCode = function () {
-                    var name = editor.getValue();
-                    stompClient.send("/app/message", {}, JSON.stringify({'name': name, 'id': id}));
+                    if(ready){
+                        var name = editor.getValue();
+                        stompClient.send("/app/message", {}, JSON.stringify({'name': name, 'id': id}));
+                    }
+
                 }
 
                 $scope.showCode = function (content, server, oid) {
@@ -302,7 +287,7 @@
                 console.log(f.profe);
             });
             f.l = [];
-            $http.post('http://localhost:8084/labncode/rest/servicios/laboratorios', this.profe).success(function (data) {
+            $http.post('http://localhost:8084/labncode/rest/servicios/laboratorio', this.profe).success(function (data) {
                 console.log(data);
                 f.l = data;
                 console.log(f.l);

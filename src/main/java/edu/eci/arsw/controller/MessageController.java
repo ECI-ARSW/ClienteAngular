@@ -12,13 +12,12 @@ import org.springframework.stereotype.Controller;
 import edu.eci.arsw.model.*;
 
 @Controller
-public class MessageController {
+public class MessageController{
     Servidor s = new Servidor();
     @MessageMapping("/mensaje")
     @SendTo("/topicide/chat")
-    public ServerMessage serverMessage(ClientMessage message) throws Exception {
-            System.out.println("llego un mensaje");
-            return new ServerMessage(message.getName(), message.getMessage());
+    public ChatMessage serverMessage(ClientMessage message) throws Exception {
+            return new ChatMessage(message.getId(), message.getName(),message.getMessage(), message.isBroadcast());
     }
     
     @MessageMapping("/code")

@@ -10,9 +10,15 @@ package edu.eci.arsw.model;
  * @author 2101359
  */
 public class ClientMessage {
-
+    /*
+    id: Emisor
+    name: Receptor
+    message: Mensaje
+    Broadcast: Es para todos o no
+    */
     private String name, message;
-    private int id;
+    private String id;
+    private boolean broadcast;
     
     
 
@@ -23,14 +29,14 @@ public class ClientMessage {
     /**
      * @return the id
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -53,5 +59,19 @@ public class ClientMessage {
      */
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    /**
+     * @return the broadcast
+     */
+    public boolean isBroadcast() {
+        return broadcast;
+    }
+
+    /**
+     * @param broadcast the broadcast to set
+     */
+    public void setBroadcast(boolean broadcast) {
+        this.broadcast = broadcast;
     }
 }
