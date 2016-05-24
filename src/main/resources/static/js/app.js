@@ -355,11 +355,11 @@
                 })
                 .state('profesores', {
                     url: '/profesores',
-                    templateUrl: 'templates/escritorioProfesor.html'
+                    templateUrl: 'templates/profesor/escritorioProfesor.html'
                 })
                 .state('estudiantes', {
                     url: '/estudiantes',
-                    templateUrl: 'templates/escritorioEstudiante.html'
+                    templateUrl: 'templates/estudiante/escritorioEstudiante.html'
                 })
     });
 })()
