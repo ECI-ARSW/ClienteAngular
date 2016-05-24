@@ -76,11 +76,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="punto in code.puntos"></tr>
-                                        <th>{{punto.nombre}}</th>
-                                        <th>{{punto.descripcion}}</th>
-                                        <th>{{punto.peso}}%</th>
-                                        <th><button type="submit" class="btn-success">Terminado</button></th>
+                                        <form>
+                                            <tr ng-repeat="punto in code.puntos">
+                                                <td>{{punto.nombre}}</td>
+                                                <td>{{punto.descripcion}}</td>
+                                                <td>{{punto.peso}}%</td>
+                                                <td><button type="submit" class="btn-success">Terminar</button></td>
+                                            </tr>
+                                        </form>
                                     </tbody>
                                 </table>
                             </div>
@@ -88,7 +91,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div ng-include="'../chat.html'"></div>
+                    <div ng-include="'templates/chat.html'"></div>
                 </div>
             </div>
             <hr>
