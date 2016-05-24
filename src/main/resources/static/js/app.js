@@ -125,12 +125,12 @@
         this.isSet = function (tab) {
             return this.tab === tab;
         };
-        var enunciado = this;
-        enunciado.grupos = [];
-        enunciado.puntos = [];
+        var enuncia = this;
+        enuncia.puntos = [];
         $http.get('http://localhost:8084/labncode/rest/servicios/laboratorio/' + laboratorio + '/enunciado').success(function (data) {
             console.log(data)
-            enunciado.puntos = data.puntos;
+            enuncia.puntos = data.puntos;
+            console.log(enuncia.puntos)
         });
 
     }]);
@@ -287,7 +287,7 @@
                 console.log(f.profe);
             });
             f.l = [];
-            $http.post('http://localhost:8084/labncode/rest/servicios/laboratorio', this.profe).success(function (data) {
+            $http.post('http://localhost:8084/labncode/rest/servicios/laboratorios', this.profe).success(function (data) {
                 console.log(data);
                 f.l = data;
                 console.log(f.l);
@@ -352,6 +352,14 @@
                 .state('laboratorios', {
                     url: '/laboratorios',
                     templateUrl: 'templates/laboratorios.html'
+                })
+                .state('profesores', {
+                    url: '/profesores',
+                    templateUrl: 'templates/escritorioProfesor.html'
+                })
+                .state('estudiantes', {
+                    url: '/estudiantes',
+                    templateUrl: 'templates/escritorioEstudiante.html'
                 })
     });
 })()
