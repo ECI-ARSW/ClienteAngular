@@ -17,33 +17,11 @@
             return personaG.nombre;
         }
     });
-    app.controller("LoginController", ['$scope', '$http', '$location', function ($scope, $http, $location) {
-            $scope.person = {};
-            var session = this;
-            session.person = {};
-            $scope.iniciar = function () {
-                $http.get('http://localhost:8084/labncode/rest/servicios/persona/' + $scope.person.id).success(function (data) {
-                    console.log(data);
-                    session.person = data;
-                    personaG.nombre = session.person.nombre;
-                    personaG.id=$scope.person.id;
-                    personaG.session_kind = session.person.profesor;
-                    if (personaG.session_kind) {
-                        personaG.grupo = personaG.nombre;
-                    } else {
-                        personaG.grupo = "Grupo1";
-                    }
-                    presonaG.grupo = "Grupo1";
-                    connected = true;
-                });
-                $location.path("laboratorios");
-            }
-
-        }]);
     app.controller("SubmitLaboratorio", ['$location', function ($location) {
             this.pasar = function (lab) {
                 console.log(lab);
                 console.log(laboratorio);
+                console.log(lab+laboratorio);
                 laboratorio = lab;
                 console.log(laboratorio);
                 $location.path("profesores");
@@ -113,11 +91,17 @@
             session.person = {};
             $scope.iniciar = function () {
                 $http.get('http://localhost:8084/labncode/rest/servicios/persona/' + $scope.person.id).success(function (data) {
-                    console.log(data);
                     session.person = data;
                     personaG.nombre = session.person.nombre;
+                    personaG.idP=session.person.identificacion;
                     personaG.session_kind = session.person.profesor;
+                    if (personaG.session_kind) {
+                        personaG.grupo = personaG.nombre;
+                    } else {
+                        personaG.grupo = "Grupo1";
+                    }
                     connected = true;
+
                     this.setLab = function (lab) {
                         laboratorio = lab;
                     };
@@ -296,8 +280,10 @@
     app.controller("LaboratorioGet", ['$http', function ($http) {
             var f = this;
             f.profe = {};
-            $http.get('http://localhost:8084/labncode/rest/servicios/profesor/' + personaG.id).success(function (data) {
-                console.log(data);
+            console.log(personaG);
+            $http.get('http://localhost:8084/labncode/rest/servicios/profesor/' + personaG.idP).success(function (data) {
+                console.log(personaG.idP)
+                console.log("Profesor"+data);
                 f.profe = data;
                 console.log(f.profe);
             });
