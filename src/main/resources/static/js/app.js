@@ -1,7 +1,6 @@
 (function () {
-    var laboratorio = "ARSW-Lab";
-    var user = "0";
-    var personaG = {'grupo' : "Grupo1"};
+    var laboratorio = "";
+    var personaG = {'grupo': "Grupo1"};
     //Si es verdadero es profesor, si no, es estudiante.
     var app = angular.module("aplicacion", ['ui.router']);
     var editor;
@@ -27,19 +26,31 @@
                     console.log(data);
                     session.person = data;
                     personaG.nombre = session.person.nombre;
+                    personaG.id=$scope.person.id;
                     personaG.session_kind = session.person.profesor;
-                    if(personaG.session_kind){
-                        personaG.grupo=personaG.nombre;
-                    }else{
-                        personaG.grupo="Grupo1";
+                    if (personaG.session_kind) {
+                        personaG.grupo = personaG.nombre;
+                    } else {
+                        personaG.grupo = "Grupo1";
                     }
-                    presonaG.grupo="Grupo1";
+                    presonaG.grupo = "Grupo1";
                     connected = true;
                 });
                 $location.path("laboratorios");
             }
 
         }]);
+    app.controller("SubmitLaboratorio", ['$location', function ($location) {
+            this.pasar = function (lab) {
+                console.log(lab);
+                console.log(laboratorio);
+                laboratorio = lab;
+                console.log(laboratorio);
+                $location.path("profesores");
+            };
+            
+        }]);
+
     app.controller("ChatController", ['$scope', function ($scope) {
             $scope.mensaje = "";
             $scope.respuesta = "";
@@ -67,13 +78,13 @@
                 clearInterval(interval);
             }
 
-            $scope.sendMessage = function(){
-                stompClient.send("/app/mensaje", {}, JSON.stringify({'id': personaG.grupo, 'name':$scope.idGrupo,'message': $scope.mensaje, 'broadcast': $scope.broadcast}));
+            $scope.sendMessage = function () {
+                stompClient.send("/app/mensaje", {}, JSON.stringify({'id': personaG.grupo, 'name': $scope.idGrupo, 'message': $scope.mensaje, 'broadcast': $scope.broadcast}));
             }
 
             $scope.actualizarChat = function (obj) {
-                if(personaG.grupo==obj.receptor || obj.broadcast){
-                    var text = "[" +obj.emisor+ "] : " + obj.mensaje+ "\n";
+                if (personaG.grupo == obj.receptor || obj.broadcast) {
+                    var text = "[" + obj.emisor + "] : " + obj.mensaje + "\n";
                     var response = document.getElementById('response');
                     var texto = document.createTextNode(text);
                     response.appendChild(texto);
@@ -88,12 +99,13 @@
     app.controller("LabController", ['$scope', '$http', function ($scope, $http) {
 
             this.isConnected = function () {
-                console.log(connected)
+                console.log(connected);
                 return connected;
             };
             this.getUser = function () {
                 return personaG.nombre;
-            }
+            };
+            
         }]);
     app.controller("LoginController", ['$scope', '$http', '$location', function ($scope, $http, $location) {
             $scope.person = {};
@@ -117,23 +129,23 @@
             };
         }]);
 
-    app.controller("CodigoController", ['$http', function ($http){
-        this.tab = 1;
-        this.setTab = function (tab) {
-            this.tab = tab;
-        };
-        this.isSet = function (tab) {
-            return this.tab === tab;
-        };
-        var enuncia = this;
-        enuncia.puntos = [];
-        $http.get('http://localhost:8084/labncode/rest/servicios/laboratorio/' + laboratorio + '/enunciado').success(function (data) {
-            console.log(data)
-            enuncia.puntos = data.puntos;
-            console.log(enuncia.puntos)
-        });
+    app.controller("CodigoController", ['$http', function ($http) {
+            this.tab = 1;
+            this.setTab = function (tab) {
+                this.tab = tab;
+            };
+            this.isSet = function (tab) {
+                return this.tab === tab;
+            };
+            var enuncia = this;
+            enuncia.puntos = [];
+            $http.get('http://localhost:8084/labncode/rest/servicios/laboratorio/' + laboratorio + '/enunciado').success(function (data) {
+                console.log(data)
+                enuncia.puntos = data.puntos;
+                console.log(enuncia.puntos);
+            });
 
-    }]);
+        }]);
 
     app.controller("TabController", ['$http', function ($http) {
             this.tab = 1;
@@ -169,9 +181,9 @@
         }]);
     app.directive('editor', function () {
         var controller = ['$scope', function ($scope) {
-            var stompclient = null;
-            var socket = null;
-            var ready=false;
+                var stompclient = null;
+                var socket = null;
+                var ready = false;
                 function conectar() {
                     socket = new SockJS('/wbs');
                     stompClient = Stomp.over(socket);
@@ -182,7 +194,10 @@
                             $scope.showCode(j.content, j.server, j.id);
                         });
                     });
-                    setTimeout(function (){ready=true; console.log("AQUI ESTA EL LISTO"+ready)}, 2000);
+                    setTimeout(function () {
+                        ready = true;
+                        console.log("AQUI ESTA EL LISTO" + ready)
+                    }, 2000);
                     interval = setInterval($scope.sendCode, 500);
                 }
                 ;
@@ -196,7 +211,7 @@
                 }
 
                 $scope.sendCode = function () {
-                    if(ready){
+                    if (ready) {
                         var name = editor.getValue();
                         stompClient.send("/app/message", {}, JSON.stringify({'name': name, 'id': id}));
                     }
@@ -281,7 +296,7 @@
     app.controller("LaboratorioGet", ['$http', function ($http) {
             var f = this;
             f.profe = {};
-            $http.get('http://localhost:8084/labncode/rest/servicios/profesor/' + user).success(function (data) {
+            $http.get('http://localhost:8084/labncode/rest/servicios/profesor/' + personaG.id).success(function (data) {
                 console.log(data);
                 f.profe = data;
                 console.log(f.profe);
