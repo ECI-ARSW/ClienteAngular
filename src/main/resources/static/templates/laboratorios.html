@@ -39,42 +39,46 @@
                             </div>
                             <div ng-show="tab.isSet(1)">
                                 <h3>Laboratorios</h3>
-                                <div ng-controller="LaboratorioGet as getLab">
-                                    <div class="row">
-                                        <div ng-repeat="lab in getLab.l" > Nombre: {{" " + lab.nombre}}
-                                            <br> Activacion: {{" " + lab.fechaAct}}
-                                            <br>
-                                            <form ng-controller="SubmitLaboratorio as sublab" ng-submit="sublab.pasar(lab.nombre)">
-                                                <button  class="btn btn-primary" type="submit">Ingresar</button> 
-                                            </form>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Fecha Activacion</th>
+                                            
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-controller="LaboratorioGet as getLab">
+                                        <tr ng-repeat="lab in getLab.l">
+
+                                            <td> {{" " + lab.nombre}}</td>
+                                            <td>  {{" " + lab.fechaAct}}</td>
+                                            <td>
+                                                <form ng-controller="SubmitLaboratorio as sublab" ng-submit="sublab.pasar(lab.nombre)">
+                                                    <button  class="btn btn-primary" type="submit">Ingresar</button> 
+                                                </form>
+                                            </td>
+                                    </tbody>
+                                </table>
+                                <div class="col-md-4">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h4>Chat</h4>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div id="conversationDiv">
+                                                <div class="form-group">
+                                                    <label>Enviar a:</label><br>
+                                                    <input type="text" placeholder="idSala" style="width:100%;">
+                                                    <p></p>
+                                                    <textarea id="response" style="width:100%; height:60%;" disabled></textarea>
+                                                    <p></p>
+                                                    <input id="message" type="text" placeholder="Escriba su mensaje aquí..." style="width:83%;"><button id="send" class="btn btn-primary btn-xs">Enviar</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </section>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Chat</h4>
-                </div>
-                <div class="panel-body">
-                    <div id="conversationDiv">
-                        <div class="form-group">
-                            <label>Enviar a:</label><br>
-                            <input type="text" placeholder="idSala" style="width:100%;">
-                            <p></p>
-                            <textarea id="response" style="width:100%; height:60%;" disabled></textarea>
-                            <p></p>
-                            <input id="message" type="text" placeholder="Escriba su mensaje aquí..." style="width:83%;"><button id="send" class="btn btn-primary btn-xs">Enviar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 

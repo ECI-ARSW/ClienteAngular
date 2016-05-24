@@ -106,6 +106,11 @@
                 return personaG.nombre;
             };
             
+            this.getLaboratorio = function(){
+                console.log(laboratorio);
+                return laboratorio;
+            };
+            
         }]);
     app.controller("LoginController", ['$scope', '$http', '$location', function ($scope, $http, $location) {
             $scope.person = {};

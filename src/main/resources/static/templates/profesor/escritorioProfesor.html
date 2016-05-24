@@ -100,11 +100,21 @@
                                     </div>
                                     <div ng-show="tab.isSet(1)">
                                         <h3>Grupos</h3>
-                                        <div class="row">
-                                            <div style="width:200px;background:#fff;border-radius: 4px;;" class="col-xs-6 col-sm-3" ng-repeat="grupo in tab.grupos">Nombre:{{" " + grupo.nombre}}<br>Porcentaje:{{" " + grupo.porcentaje}}</div>
-                                        </div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Porcentaje</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody >
+                                                <tr  ng-repeat="grupo in tab.grupos">
+                                                    <th>{{grupo.nombre}}</th>                                                    
+                                                    <th>{{grupo.porcentaje}}</th> 
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </section>
                             </div>
                         </div>
                     </div>
@@ -112,17 +122,17 @@
                 <div class="col-md-4">
                     <div ng-include="'templates/chat.html'"></div>
                 </div>
-                </div>
             </div>
-            <hr>
-            <footer>
-                <center>
-                    <p>Desarrollado por Maria Alejandra Blanco Uribe y Oscar Andres Caicedo Bedoya<br>
-                        2016
-                    </p>
-                </center>
-            </footer>
-            </div>
-    </body>
+        </div>
+        <hr>
+        <footer>
+            <center>
+                <p>Desarrollado por Maria Alejandra Blanco Uribe y Oscar Andres Caicedo Bedoya<br>
+                    2016
+                </p>
+            </center>
+        </footer>
+    </div>
+</body>
 </html>
 
